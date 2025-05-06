@@ -1,0 +1,6 @@
+@sistem_pemesanan_produk_HostAddress = http://localhost:5155
+
+GET {{sistem_pemesanan_produk_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

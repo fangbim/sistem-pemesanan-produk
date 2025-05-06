@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/sistem-pemesanan-produk.props" />
+</Project>

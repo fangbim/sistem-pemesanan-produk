@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  webapi:
+    build: .
+    ports:
+      - "8000:8080"
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
