@@ -13,6 +13,6 @@ namespace sistem_pemesanan_produk.Interfaces
         Task<Order?> GetOrderByIdAsync(int id);
         Task<List<Order>> GetAllOrdersAsync();
         Task<Order?> DeleteOrderAsync(int id);
-        Task<string> CreateOrderUsingStoredProcedureAsync(int kodeProduk, int qty, string pembeli);
+        Task<string> CreateOrderUsingStoredProcedureAsync(string pembeli, List<OrderProduct> products);
     }
 }

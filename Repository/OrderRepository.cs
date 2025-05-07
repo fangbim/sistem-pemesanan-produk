@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -47,10 +48,26 @@ namespace sistem_pemesanan_produk.Repository
             return order;
         }
 
-        public async Task<string> CreateOrderUsingStoredProcedureAsync(int kodeProduk, int qty, string pembeli)
+        public async Task<string> CreateOrderUsingStoredProcedureAsync(string pembeli, List<OrderProduct> products)
         {
+            var table = new DataTable();
+            table.Columns.Add("ProductId", typeof(int));
+            table.Columns.Add("Quantity", typeof(int));
+
+            foreach (var product in products)
+            {
+                table.Rows.Add(product.ProductId, product.Quantity);
+            }
+
+            var pembeliParam = new SqlParameter("@Pembeli", pembeli);
+            var productsParam = new SqlParameter("@Products", table)
+            {
+                TypeName = "OrderProductsType",
+                SqlDbType = SqlDbType.Structured
+            };
+
             var result = await _context.Database
-                .SqlQueryRaw<string>("EXEC sp_CreateOrder @p0, @p1, @p2", kodeProduk, qty, pembeli)
+                .SqlQueryRaw<string>("EXEC sp_CreateOrder @Pembeli, @Products", pembeliParam, productsParam)
                 .ToListAsync();
 
             return result.FirstOrDefault() ?? "Gagal";

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("sistem-pemesanan-produk")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a7b3289901a282ee4fe5ee7bfce7c9e5a905f28")]
 [assembly: System.Reflection.AssemblyProductAttribute("sistem-pemesanan-produk")]
 [assembly: System.Reflection.AssemblyTitleAttribute("sistem-pemesanan-produk")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

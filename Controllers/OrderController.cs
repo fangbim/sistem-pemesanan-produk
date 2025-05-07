@@ -61,8 +61,14 @@ namespace sistem_pemesanan_produk.Controllers
             if (createOrderDto.Products == null || !createOrderDto.Products.Any())
             return BadRequest("Produk tidak boleh kosong");
 
-            var product = createOrderDto.Products.First();
-            var result = await _orderRepo.CreateOrderUsingStoredProcedureAsync(product.ProductId, product.Quantity, createOrderDto.NamaPembeli);
+            var result = await _orderRepo.CreateOrderUsingStoredProcedureAsync(
+                createOrderDto.NamaPembeli,
+                createOrderDto.Products.Select(p => new OrderProduct
+                {
+                    ProductId = p.ProductId,
+                    Quantity = p.Quantity
+                }).ToList()
+            );
 
             if (result == "Sukses")
                 return Ok(new { Message = "Order berhasil dibuat via Stored Procedure" });
